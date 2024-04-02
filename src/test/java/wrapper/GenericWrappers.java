@@ -2,8 +2,11 @@ package wrapper;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchWindowException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import utils.Reporter;
 
@@ -16,7 +19,7 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 		if (browser.equals("ie"))
 			browser = "internet explorer";
 
-		sUrl = "https://www.facebook.com/";
+		sUrl = "https://www.facebook.com/login/";
 
 		boolean bReturn = false;
 
@@ -113,6 +116,44 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 		} catch (Exception ex) {
 			return false;
 		}
+	}
+	
+	
+	public boolean enterByXpath(String xpath, String data) {
+		
+		boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+			ele.clear();
+			ele.sendKeys(data);
+			bReturn = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+		
+		
+	}
+     public boolean enterById(String id, String data) {
+		
+		boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
+			ele.clear();
+			ele.sendKeys(data);
+			bReturn = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+		
+		
 	}
 
 }

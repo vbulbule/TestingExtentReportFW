@@ -23,6 +23,8 @@ public class Reporter extends GenericWrappers{
 		
 		System.out.println(desc);
 		reportStep(desc, status,true);
+		sStepNumber.set(sStepNumber.get()+1);
+		startTime = new Date().getTime();
 		
 	}
 	
