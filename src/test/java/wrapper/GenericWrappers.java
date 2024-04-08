@@ -1,9 +1,12 @@
 package wrapper;
 
+import java.time.Duration;
+
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,7 +22,7 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 		if (browser.equals("ie"))
 			browser = "internet explorer";
 
-		sUrl = "https://www.facebook.com/login/";
+		sUrl = "https://www.facebook.com/";
 
 		boolean bReturn = false;
 
@@ -36,7 +39,7 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 				} else if (browser.equals("chrome")) {
 
 					if (sPlatform.startsWith("win")) {
-						System.setProperty("webdriver.chrome.driver", getAbsolutePath() + "drivers/chromedriver.exe");
+						System.setProperty("webdriver.chrome.driver", "E:\\social_media\\TestingExtentReportFW\\drivers\\chromedriver.exe");
 					} else if (sPlatform.startsWith("linux")) {
 						System.setProperty("webdriver.chrome.driver",
 								getAbsolutePath() + "drivers/chromedriver_linux/chromedriver");
@@ -50,9 +53,10 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 
 			}
 
-			getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 			Dimension d = new Dimension(1400, 900);
 			getDriver().manage().window().setSize(d);
+			getDriver().manage().window().maximize();
 			System.out.println(sUrl);
 			getDriver().get(sUrl);
 			setWait();
@@ -118,26 +122,7 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 		}
 	}
 	
-	
-	public boolean enterByXpath(String xpath, String data) {
-		
-		boolean bReturn = false;
-		WebElement ele = null;
-		try {
-			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-			ele.clear();
-			ele.sendKeys(data);
-			bReturn = true;
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return bReturn;
-		
-		
-	}
-     public boolean enterById(String id, String data) {
+public boolean editById(String id, String data) {
 		
 		boolean bReturn = false;
 		WebElement ele = null;
@@ -156,4 +141,117 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 		
 	}
 
+public boolean clickOnBTN_ByName(String name) {
+	
+	boolean bReturn = false;
+	 WebElement ele = null;
+	try {
+		ele=getWait().until(ExpectedConditions.visibilityOfElementLocated(By.name(name)));
+		ele.click();
+		getWait();
+		bReturn = true;
+	}
+	catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	return bReturn;
+	
+}
+  public boolean clickBTN_ByXpath(String xpath) { //CLICK METHOD
+		
+		boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+			ele.click();
+			bReturn = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+	}
+  
+  
+  public boolean searchText(String xpath , String name) { //* search for frined
+		
+		boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+			ele.click();
+			ele.sendKeys(name , Keys.ENTER);
+			getWait();
+			bReturn = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+}
+  
+  public boolean verifyElementIsSelected(String xpath ,String expected_result)
+  {
+	  boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+		    String color = ele.getCssValue("color");
+		   // String exp_color="rgba(56, 88, 152, 1)";
+		    
+		    if(expected_result.equals(color))
+		    {
+		    	System.out.println("element is by default available / selected");
+		    }
+			bReturn = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+	  
+  }
+  public boolean isElementPresent(String xpath)
+  {
+	  boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+			ele.click();
+			getWait();
+			bReturn = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+	  
+  }
+  
+  public boolean verifyProfileName(String xpath ,String expected_result)
+  {
+	  boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+		    String profile_name = ele.getText();
+		    if(expected_result.equals(profile_name))
+		    {
+		    	System.out.println("element is by default available / selected");
+		    }
+			bReturn = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+	  
+  }
+  
 }
