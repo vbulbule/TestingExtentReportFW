@@ -34,9 +34,19 @@ public class DriverInstannce {
 	}
 	
 	public void setDriver(String browser) {
+		  DesiredCapabilities dc = new DesiredCapabilities();
 		switch (browser) {
 		case "chrome":
-			remoteWebDriver.set(new ChromeDriver());
+			HashMap<String, Object> prefs = new HashMap<String, Object>();
+			prefs.put("download.default_directory", "./");
+			prefs.put("safebrowsing.enabled", "false");
+			
+			ChromeOptions co = new ChromeOptions();
+			co.setExperimentalOption("prefs", prefs);
+			co.addArguments("--disable-notifications");
+			
+			dc.setCapability(ChromeOptions.CAPABILITY, co);
+			remoteWebDriver.set(new ChromeDriver(co));
 			break;
 		case "firefox":
 			remoteWebDriver.set(new FirefoxDriver());
