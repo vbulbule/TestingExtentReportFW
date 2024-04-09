@@ -1,11 +1,17 @@
 package wrapper;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebElement;
@@ -14,7 +20,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Reporter;
 
 public abstract class GenericWrappers extends reports.HtmlReporter {
-	
+
 	protected String browserName = "chrome";
 
 	public boolean launchApp(String browser, boolean remote) {
@@ -39,7 +45,8 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 				} else if (browser.equals("chrome")) {
 
 					if (sPlatform.startsWith("win")) {
-						System.setProperty("webdriver.chrome.driver", "E:\\social_media\\TestingExtentReportFW\\drivers\\chromedriver.exe");
+						System.setProperty("webdriver.chrome.driver",
+								"E:\\social_media\\TestingExtentReportFW\\drivers\\chromedriver.exe");
 					} else if (sPlatform.startsWith("linux")) {
 						System.setProperty("webdriver.chrome.driver",
 								getAbsolutePath() + "drivers/chromedriver_linux/chromedriver");
@@ -100,15 +107,15 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 
 		} catch (NoSuchWindowException e) {
 			System.out.println("---In No Such Window Exception Catch Block---");
-		
+
 			System.out.println("Session is Expired");
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 			System.out.println("---In Exception Catch Block---");
 			System.out.println("Session is Expired 2nd block");
-		
+
 		}
 
 	}
@@ -121,9 +128,9 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 			return false;
 		}
 	}
-	
-public boolean editById(String id, String data) {
-		
+
+	public boolean editById(String id, String data) {
+
 		boolean bReturn = false;
 		WebElement ele = null;
 		try {
@@ -131,127 +138,166 @@ public boolean editById(String id, String data) {
 			ele.clear();
 			ele.sendKeys(data);
 			bReturn = true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return bReturn;
-		
-		
+
 	}
 
-public boolean clickOnBTN_ByName(String name) {
-	
-	boolean bReturn = false;
-	 WebElement ele = null;
-	try {
-		ele=getWait().until(ExpectedConditions.visibilityOfElementLocated(By.name(name)));
-		ele.click();
-		getWait();
-		bReturn = true;
+	public boolean clickOnBTN_ByName(String name) {
+
+		boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.name(name)));
+			ele.click();
+			getWait();
+			bReturn = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+
 	}
-	catch (Exception e) {
-		// TODO: handle exception
-		e.printStackTrace();
-	}
-	return bReturn;
-	
-}
-  public boolean clickBTN_ByXpath(String xpath) { //CLICK METHOD
-		
+
+	public boolean clickBTN_ByXpath(String xpath) { // CLICK METHOD
+
 		boolean bReturn = false;
 		WebElement ele = null;
 		try {
 			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 			ele.click();
+			getWait();
+			
+
 			bReturn = true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return bReturn;
 	}
-  
-  
-  public boolean searchText(String xpath , String name) { //* search for frined
-		
+
+	public boolean searchText(String xpath, String name) { // * search for frined
+
 		boolean bReturn = false;
 		WebElement ele = null;
 		try {
 			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 			ele.click();
-			ele.sendKeys(name , Keys.ENTER);
+			ele.sendKeys(name, Keys.ENTER);
 			getWait();
 			bReturn = true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return bReturn;
-}
-  
-  public boolean verifyElementIsSelected(String xpath ,String expected_result)
-  {
-	  boolean bReturn = false;
+	}
+
+	public boolean verifyElementIsSelected(String xpath, String expected_result) {
+		boolean bReturn = false;
 		WebElement ele = null;
 		try {
 			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-		    String color = ele.getCssValue("color");
-		   // String exp_color="rgba(56, 88, 152, 1)";
-		    
-		    if(expected_result.equals(color))
-		    {
-		    	System.out.println("element is by default available / selected");
-		    }
+			String color = ele.getCssValue("color");
+			// String exp_color="rgba(56, 88, 152, 1)";
+
+			if (expected_result.equals(color)) {
+				System.out.println("element is by default available / selected");
+			}
 			bReturn = true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return bReturn;
-	  
-  }
-  public boolean isElementPresent(String xpath)
-  {
-	  boolean bReturn = false;
+
+	}
+
+	public boolean isElementPresent(String xpath) {
+		boolean bReturn = false;
 		WebElement ele = null;
 		try {
 			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 			ele.click();
 			getWait();
+
 			bReturn = true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return bReturn;
-	  
-  }
-  
-  public boolean verifyProfileName(String xpath ,String expected_result)
-  {
-	  boolean bReturn = false;
+
+	}
+
+	public boolean verifyProfileName(String xpath, String expected_result) {
+		boolean bReturn = false;
 		WebElement ele = null;
 		try {
 			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-		    String profile_name = ele.getText();
-		    if(expected_result.equals(profile_name))
-		    {
-		    	System.out.println("element is by default available / selected");
-		    }
+			String profile_name = ele.getText();
+			if (expected_result.equals(profile_name)) {
+				System.out.println("element is by default available / selected");
+			}
+			
+			getWait();
+			pageScrollUp();
+			getWait();
 			bReturn = true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return bReturn;
-	  
-  }
-  
+	}
+
+	public boolean uploadFileUsingRobotClass(String xpath) {
+
+		boolean bReturn = false;
+		WebElement ele = null;
+		try {
+			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+			ele.click();
+
+			Robot rb = null;
+			try {
+				rb = new Robot();
+			} catch (AWTException e) {
+
+			}
+
+			StringSelection filepath = new StringSelection("E:\\Git\\TestingExtentReportFW\\data\\aayush.jpg");
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filepath, null);
+
+			rb.keyPress(KeyEvent.VK_CONTROL);
+			rb.keyPress(KeyEvent.VK_V);
+
+			rb.keyRelease(KeyEvent.VK_V);
+			rb.keyRelease(KeyEvent.VK_CONTROL);
+
+			getWait();
+			rb.keyPress(KeyEvent.VK_ENTER);
+			rb.keyRelease(KeyEvent.VK_ENTER);
+
+			getWait();
+			getWait();
+
+			bReturn = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return bReturn;
+	}
+
+	public void pageScrollUp() {
+		JavascriptExecutor jse = (JavascriptExecutor) getDriver();
+		jse.executeScript("window.scrollBy(0,-250)");
+	}
+
 }
