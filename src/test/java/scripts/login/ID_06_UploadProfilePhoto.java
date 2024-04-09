@@ -34,7 +34,10 @@ public class ID_06_UploadProfilePhoto extends GenericWrappers {
 			.verifyRememberPasswordpopupisDisplayed()
 			.verifyHomepageDisplayed(expected_result)
 			.clickOnProfileIcon()
-			.verifyProfileNameDisplayed(expected_result);
+			.verifyProfileNameDisplayed(expected_result)
+			.clickOnUpdateProfile()
+			.clickOnUploadPhoto()
+			.clickOnSaveBTN();
 			
 			Status= "PASS";
 		}
