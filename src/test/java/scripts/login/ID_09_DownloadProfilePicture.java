@@ -10,8 +10,8 @@ import pages.LoginPage;
 import utils.DataInputProvider;
 import wrapper.GenericWrappers;
 
-public class ID_06_UploadProfilePhoto extends GenericWrappers {
-	
+public class ID_09_DownloadProfilePicture extends GenericWrappers {
+/*	
 	@BeforeTest
 	public void setReportDetails() {
 		
@@ -21,7 +21,7 @@ public class ID_06_UploadProfilePhoto extends GenericWrappers {
 		author= "Amruta Chougule";
 		category = "Login";
 	}
-	
+
 	@Test(dataProvider = "LoginTestID_01")
 	public void validLoginTest(String username,String password,String expected_result)
 	{
@@ -36,9 +36,8 @@ public class ID_06_UploadProfilePhoto extends GenericWrappers {
 			.clickOnProfileIcon()
 			.verifyProfileNameDisplayed(expected_result)
 			.clickOnUpdateProfile()
-			.clickOnUploadPhoto()
-			.clickOnSaveBTN()
-			.verifyProfileNameDisplayed(expected_result);
+			.clickOnEditMenu()
+			.clickOnDownload();
 			
 			Status= "PASS";
 		}
@@ -55,6 +54,5 @@ public class ID_06_UploadProfilePhoto extends GenericWrappers {
 		return arrayObj;
 	}
 
-
-
+*/
 }
