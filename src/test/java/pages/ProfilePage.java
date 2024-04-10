@@ -42,8 +42,9 @@ public class ProfilePage extends GenericWrappers {
 		return this;
 	}
 
+	
 	public ProfilePage clickOnSaveBTN() {
-		if (clickBTN_ByXpath("//span[text()='Save']"))
+		if (clickBTN_ByXpath("//div[@aria-label='Save']"))
 			Reporter.reportStep("Clicked on save changes :", "SUCCESS");
 		else
 			Reporter.reportStep("Unable to click on save changes", "FAILURE");
@@ -114,7 +115,15 @@ public class ProfilePage extends GenericWrappers {
 			Reporter.reportStep("Unable to click on confirm BTN", "FAILURE");
 
 		return this;
+	}
 	
+	public ProfilePage clickOnSeeProfilePhoto() {
+		if(clickBTN_ByXpath("//span[text()='See profile picture']"))
+			Reporter.reportStep("Clicked on See profile picture option:", "SUCCESS");
+		else
+			Reporter.reportStep("Unable to click on See profile picture option", "FAILURE");
+
+		return this;
 	}
 	
 }
