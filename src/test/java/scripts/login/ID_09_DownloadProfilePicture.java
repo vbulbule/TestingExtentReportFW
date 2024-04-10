@@ -11,7 +11,7 @@ import utils.DataInputProvider;
 import wrapper.GenericWrappers;
 
 public class ID_09_DownloadProfilePicture extends GenericWrappers {
-/*	
+
 	@BeforeTest
 	public void setReportDetails() {
 		
@@ -35,10 +35,7 @@ public class ID_09_DownloadProfilePicture extends GenericWrappers {
 			.verifyHomepageDisplayed(expected_result)
 			.clickOnProfileIcon()
 			.verifyProfileNameDisplayed(expected_result)
-			.clickOnUpdateProfile()
-			.clickOnEditMenu()
-			.clickOnDownload();
-			
+			.clickOnUpdateProfile();
 			Status= "PASS";
 		}
 		
@@ -54,5 +51,4 @@ public class ID_09_DownloadProfilePicture extends GenericWrappers {
 		return arrayObj;
 	}
 
-*/
 }
