@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
+<<<<<<< Updated upstream
   <test thread-count="5" name="Test">
     <classes>
       <class name="scripts.login.ID_05_SeachFriendandSendFriendRequest"/>
@@ -9,6 +10,12 @@
       <class name="scripts.login.LoginTest_ID1"/>
       <class name="scripts.login.ID_02_Valid_LoginTest"/>
       <class name="scripts.login.ID_06_UploadProfilePhoto"/>
+=======
+	
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="scripts.login.LoginTest_ID1"/>
+>>>>>>> Stashed changes
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
