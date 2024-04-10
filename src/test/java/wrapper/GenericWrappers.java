@@ -263,30 +263,11 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 		try {
 			ele = getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 			ele.click();
-
-			Robot rb = null;
-			try {
-				rb = new Robot();
-			} catch (AWTException e) {
-
-			}
-
-			StringSelection filepath = new StringSelection("E:\\Git\\TestingExtentReportFW\\data\\aayush.jpg");
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filepath, null);
-
-			rb.keyPress(KeyEvent.VK_CONTROL);
-			rb.keyPress(KeyEvent.VK_V);
-
-			rb.keyRelease(KeyEvent.VK_V);
-			rb.keyRelease(KeyEvent.VK_CONTROL);
-
+			UploadFileUsingRobotClass();
 			getWait();
-			rb.keyPress(KeyEvent.VK_ENTER);
-			rb.keyRelease(KeyEvent.VK_ENTER);
+			pageScrollDown();
 
-			getWait();
-			getWait();
-
+			
 			bReturn = true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -294,10 +275,47 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 		}
 		return bReturn;
 	}
+	
+	public void UploadFileUsingRobotClass()
+	{
+		Robot rb = null;
+		try {
+			rb = new Robot();
+
+		} catch (AWTException e) {
+
+		}
+         
+		rb.delay(2000);
+		StringSelection filepath = new StringSelection("C:\\photo\\aayush.jpg");
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filepath, null);;
+		
+
+		rb.keyPress(KeyEvent.VK_CONTROL);
+		rb.keyPress(KeyEvent.VK_V);
+		rb.delay(2000);
+
+		rb.keyRelease(KeyEvent.VK_V);
+		rb.keyRelease(KeyEvent.VK_CONTROL);
+		rb.delay(2000);
+
+		rb.keyPress(KeyEvent.VK_ENTER);
+		rb.keyRelease(KeyEvent.VK_ENTER);
+		rb.delay(2000);
+	}
+	public void DownloadFile()
+	{
+		
+	}
 
 	public void pageScrollUp() {
 		JavascriptExecutor jse = (JavascriptExecutor) getDriver();
 		jse.executeScript("window.scrollBy(0,-250)");
+	}
+	
+	public void pageScrollDown() {
+		JavascriptExecutor jse = (JavascriptExecutor) getDriver();
+		jse.executeScript("window.scrollBy(0,250)");
 	}
 
 }

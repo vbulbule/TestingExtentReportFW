@@ -23,7 +23,7 @@ public class DriverInstannce {
 	private static final ThreadLocal<WebDriverWait> wait = new ThreadLocal<WebDriverWait>();
 	
 	public void setWait() {
-		wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(40)));
+		wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(50)));
 	}
 
 	public WebDriverWait getWait() {
