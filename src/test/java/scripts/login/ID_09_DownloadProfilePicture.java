@@ -14,10 +14,10 @@ public class ID_09_DownloadProfilePicture extends GenericWrappers {
 	@BeforeTest
 	public void setReportDetails() {
 		
-		System.out.println(" ------  in before test ------");
+		System.out.println(" ------ in before test ------");
 		testcaseName = this.getClass().getName();
 		testcaseDec = this.getClass().getSimpleName();
-		author= "Amruta Chougule";
+		author= "Amruta Chougule ";
 		category = "Login";
 	}
 
@@ -35,6 +35,8 @@ public class ID_09_DownloadProfilePicture extends GenericWrappers {
 			.clickOnProfileIcon()
 			.verifyProfileNameDisplayed(expected_result)
 			.clickOnUpdateProfile();
+			
+		
 			Status= "PASS";
 		}
 		
