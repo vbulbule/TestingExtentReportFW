@@ -99,18 +99,16 @@ public class ProfilePage extends GenericWrappers {
 	
 	public ProfilePage removeCoverPhoto() {
 		if (clickBTN_ByXpath("//span[text()='Remove']"))
-			Reporter.reportStep("Clicked on Remove cover photo :", "SUCCESS");
+			Reporter.reportStep("Clicked on Remove cover photo ", "SUCCESS");
 		else
 			Reporter.reportStep("Unable to click on Remove cover photo", "FAILURE");
 
-		return this;
-		
-		
+		return this;	
 	}
 	
 	public ProfilePage clickOnConfirmBTN() {
 		if (clickBTN_ByXpath("//span[text()='Confirm']"))
-			Reporter.reportStep("Clicked on confim  :", "SUCCESS");
+			Reporter.reportStep("Clicked on confim ", "SUCCESS");
 		else
 			Reporter.reportStep("Unable to click on confirm BTN", "FAILURE");
 
@@ -119,7 +117,7 @@ public class ProfilePage extends GenericWrappers {
 	
 	public ProfilePage clickOnSeeProfilePhoto() {
 		if(clickBTN_ByXpath("//span[text()='See profile picture']"))
-			Reporter.reportStep("Clicked on See profile picture option:", "SUCCESS");
+			Reporter.reportStep("Clicked on See profile picture option ", "SUCCESS");
 		else
 			Reporter.reportStep("Unable to click on See profile picture option", "FAILURE");
 

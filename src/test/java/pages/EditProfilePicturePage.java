@@ -25,7 +25,7 @@ public class EditProfilePicturePage extends GenericWrappers  {
 	
 	public EditProfilePicturePage clickOnEditMenu() {
 		if (isElementPresent("(//div[@aria-label='Actions for this post'])[last()]"))
-			Reporter.reportStep("Edit menu is clicked :", "SUCCESS");
+			Reporter.reportStep("Edit menu is clicked ", "SUCCESS");
 		else
 			Reporter.reportStep("Unable to click on Edit menu", "FAILURE");
 
@@ -35,7 +35,7 @@ public class EditProfilePicturePage extends GenericWrappers  {
 	
 	public EditProfilePicturePage clickOnDownload() {
 		if (isElementPresent("//span[text()='Download']"))
-			Reporter.reportStep("Download option is selected :", "SUCCESS");
+			Reporter.reportStep("Download option is selected ", "SUCCESS");
 		else
 			Reporter.reportStep("Unable to click on download option", "FAILURE");
 
