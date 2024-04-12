@@ -46,7 +46,7 @@ public abstract class GenericWrappers extends reports.HtmlReporter {
 
 					if (sPlatform.startsWith("win")) {
 						System.setProperty("webdriver.chrome.driver",
-								"E:\\social_media\\TestingExtentReportFW\\drivers\\chromedriver.exe");
+								GenericWrappers.getAbsolutePath()+"drivers/chromedriver.exe");
 					} else if (sPlatform.startsWith("linux")) {
 						System.setProperty("webdriver.chrome.driver",
 								getAbsolutePath() + "drivers/chromedriver_linux/chromedriver");
