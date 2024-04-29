@@ -71,7 +71,8 @@ public class HtmlReporter extends DriverInstannce {
 		HtmlReporter.context.set(context);
 		suiteName = context.getCurrentXmlTest().getSuite().getName();
 		System.out.println("Suite Name is :"+suiteName);
-		String fileName = "target/reports/"+suiteName+"_"+Time+".html";
+		//String fileName = "target/reports/"+suiteName+"_"+Time+".html";
+		String fileName = "target/reports/"+suiteName+".html";
 		
 		File f = new File("./reports");
 		if(! f.exists()) {
