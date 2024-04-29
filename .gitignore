@@ -36,6 +36,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
-drivers/
 /test-output
-/reports
